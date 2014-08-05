@@ -1,0 +1,33 @@
+--->>> CTraderSpi::OnFrontConnected
+--->>> 发送用户登录请求: 成功
+--->>> CTraderSpi::OnRspUserLogin
+--->>> 获取当前交易日 = 20090601
+--->>> 投资者结算结果确认: 成功
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRspSettlementInfoConfirm
+--->>> 请求查询合约: 成功
+--->>> CTraderSpi::OnRspQryInstrument
+--->>> 请求查询资金账户: 成功
+--->>> CTraderSpi::OnRspQryTradingAccount
+--->>> 请求查询投资者持仓: 成功
+--->>> CTraderSpi::OnRspQryInvestorPosition
+--->>> CTraderSpi::OnRspQryInvestorPosition
+--->>> CTraderSpi::OnRspQryInvestorPosition
+--->>> 报单录入请求: 成功
+--->>> CTraderSpi::OnRtnOrder
+--->>> 报单操作请求: 成功
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+--->>> CTraderSpi::OnRtnOrder
+^C
