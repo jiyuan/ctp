@@ -90,7 +90,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy .\ThostTraderApi\thosttraderapi.dll .\bin\"
+				CommandLine="copy .\ThostTraderApi\thostMduserapi.dll .\bin\"
 			/>
 		</Configuration>
 		<Configuration

@@ -12,14 +12,14 @@ char FRONT_ADDR[] = "tcp://asp-sim2-md1.financial-trading-platform.com:26213";		
 TThostFtdcBrokerIDType	BROKER_ID = "2030";				// 经纪公司代码
 TThostFtdcInvestorIDType INVESTOR_ID = "00092";			// 投资者代码
 TThostFtdcPasswordType  PASSWORD = "888888";			// 用户密码
-char *ppInstrumentID[] = {"cu0907", "cu0909"};			// 行情订阅列表
+char *ppInstrumentID[] = {"cu1205", "cu1206"};			// 行情订阅列表
 int iInstrumentID = 2;									// 行情订阅数量
 
 // 请求编号
 int iRequestID = 0;
 
 void main(void)
-{
+{	
 	// 初始化UserApi
 	pUserApi = CThostFtdcMdApi::CreateFtdcMdApi();			// 创建UserApi
 	CThostFtdcMdSpi* pUserSpi = new CMdSpi();

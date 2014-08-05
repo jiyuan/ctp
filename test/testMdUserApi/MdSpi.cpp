@@ -21,25 +21,25 @@ extern int iRequestID;
 void CMdSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo,
 		int nRequestID, bool bIsLast)
 {
-	cerr << "--->>> "<< __FUNCTION__ << endl;
+	cerr << "--->>> "<< "OnRspError" << endl;
 	IsErrorRspInfo(pRspInfo);
 }
 
 void CMdSpi::OnFrontDisconnected(int nReason)
 {
-	cerr << "--->>> " << __FUNCTION__ << endl;
+	cerr << "--->>> " << "OnFrontDisconnected" << endl;
 	cerr << "--->>> Reason = " << nReason << endl;
 }
 		
 void CMdSpi::OnHeartBeatWarning(int nTimeLapse)
 {
-	cerr << "--->>> " << __FUNCTION__ << endl;
+	cerr << "--->>> " << "OnHeartBeatWarning" << endl;
 	cerr << "--->>> nTimerLapse = " << nTimeLapse << endl;
 }
 
 void CMdSpi::OnFrontConnected()
 {
-	cerr << "--->>> " << __FUNCTION__ << endl;
+	cerr << "--->>> " << "OnFrontConnected" << endl;
 	///用户登录请求
 	ReqUserLogin();
 }
@@ -58,13 +58,15 @@ void CMdSpi::ReqUserLogin()
 void CMdSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
 		CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
-	cerr << "--->>> " << __FUNCTION__ << endl;
+	cerr << "--->>> " << "OnRspUserLogin" << endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
 		///获取当前交易日
 		cerr << "--->>> 获取当前交易日 = " << pUserApi->GetTradingDay() << endl;
 		// 请求订阅行情
 		SubscribeMarketData();	
+		// 请求订阅询价,只能订阅郑商所的询价，其他交易所通过traderapi相应接口返回
+		SubscribeForQuoteRsp();	
 	}
 }
 
@@ -74,19 +76,40 @@ void CMdSpi::SubscribeMarketData()
 	cerr << "--->>> 发送行情订阅请求: " << ((iResult == 0) ? "成功" : "失败") << endl;
 }
 
+void CMdSpi::SubscribeForQuoteRsp()
+{
+	int iResult = pUserApi->SubscribeForQuoteRsp(ppInstrumentID, iInstrumentID);
+	cerr << "--->>> 发送询价订阅请求: " << ((iResult == 0) ? "成功" : "失败") << endl;
+}
+
 void CMdSpi::OnRspSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
-	cerr << __FUNCTION__ << endl;
+	cerr << "OnRspSubMarketData" << endl;
+}
+
+void CMdSpi::OnRspSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	cerr << "OnRspSubForQuoteRsp" << endl;
 }
 
 void CMdSpi::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
-	cerr << __FUNCTION__ << endl;
+	cerr << "OnRspUnSubMarketData" << endl;
+}
+
+void CMdSpi::OnRspUnSubForQuoteRsp(CThostFtdcSpecificInstrumentField *pSpecificInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	cerr << "OnRspUnSubForQuoteRsp" << endl;
 }
 
 void CMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
-	cerr << __FUNCTION__ << endl;
+	cerr << "OnRtnDepthMarketData" << endl;
+}
+
+void CMdSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
+{
+	cerr << "OnRtnForQuoteRsp" << endl;
 }
 
 bool CMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
